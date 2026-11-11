@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="color-scheme" content="dark" />
+    <title>HackPulse | Hackathon Engineering Blog, Playbooks &amp; Live Teardowns</title>
+    <meta
+      name="description"
+      content="HackPulse is a modern hackathon blog and builder platform featuring winning 48-hour postmortems, architecture blueprints, pitch deconstructions, and interactive sprint playbooks."
+    />
+    <meta
+      name="keywords"
+      content="hackathon blog, winning hackathon stories, hackathon architecture, 3 minute pitch deck, AI hackathon playbook, developer sprint notes"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23030712'/%3E%3Cpath d='M12 28L21 8L20 18H28L18 32L20 22H12Z' fill='%2306b6d4'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- PRELOADER -->
+      <div class="loading-screen" id="loading-screen" aria-hidden="false">
+        <div class="loader-particles" id="loader-particles"></div>
+        <span class="brand-logo large" aria-hidden="true">
+          <span class="brand-orbit"></span>
+          <svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none">
+            <path d="M12 25L22 7L20 18H28L17 33L19.5 22H12V25Z" fill="url(#brandGradLarge)" />
+            <defs>
+              <linearGradient id="brandGradLarge" x1="12" y1="7" x2="28" y2="33" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#67e8f9" />
+                <stop offset="0.55" stop-color="#2563eb" />
+                <stop offset="1" stop-color="#7c3aed" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <strong>HackPulse</strong>
+        <p>Preparing hackathon field notes &amp; sprint stack</p>
+        <div class="loader-track"><span></span></div>
+      </div>
+
+      <!-- FLOATING FROSTED GLASS NAVIGATION -->
+      <header class="nav">
+        <a class="logo" href="#top">
+          <span class="brand-logo" aria-hidden="true">
+            <span class="brand-orbit"></span>
+            <svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none">
+              <path d="M12 25L22 7L20 18H28L17 33L19.5 22H12V25Z" fill="url(#brandGradNav)" />
+              <defs>
+                <linearGradient id="brandGradNav" x1="12" y1="7" x2="28" y2="33" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#67e8f9" />
+                  <stop offset="0.55" stop-color="#2563eb" />
+                  <stop offset="1" stop-color="#7c3aed" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span>HackPulse</span>
+        </a>
+
+        <nav aria-label="Primary Navigation">
+          <a href="#features">Features</a>
+          <a href="#process">How it works</a>
+          <a href="#blog">Field Notes</a>
+          <a href="#demo">Live demo</a>
+          <a href="#pricing">Plans</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="nav-cta" href="#demo" data-open-demo>
+            <span>Explore Live</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+          <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="7" x2="20" y2="7"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="17" x2="20" y2="17"></line>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <a href="#features">Features</a>
+        <a href="#process">How it works</a>
+        <a href="#blog">Field Notes &amp; Blog</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#pricing">Plans</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <!-- HERO SECTION -->
+      <section id="top" class="hero">
+        <div class="particles" id="hero-particles" aria-hidden="true"></div>
+        <div class="parallax-glow glow-one" aria-hidden="true"></div>
+        <div class="parallax-glow glow-two" aria-hidden="true"></div>
+
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Build. Document. Ship. Win.</span>
+          </div>
+          <h1>Publish Winning Hacks In Minutes</h1>
+          <p>
+            HackPulse gives builders, hackathon teams, and engineering communities one editorial hub to share 48-hour build logs, system diagrams, live demos, and winning strategies without friction.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary pulse" href="#blog">
+              <span>Read Field Notes</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <button class="button secondary" type="button" data-open-demo>Try Live Workflow</button>
+          </div>
+          <div class="hero-trust">
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              180+ Winning Teardowns
+            </span>
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              Verified Code Playbooks
+            </span>
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+              Live 48h Telemetry
+            </span>
+          </div>
+        </div>
+
+        <!-- SIGNATURE RIGHT FLOATING INFO CARD (Mirrors readytoscale.in .product-info-card) -->
+        <div class="product-info-card" aria-label="HackPulse editorial summary">
+          <div class="info-card-bg" aria-hidden="true"></div>
+          <div class="info-card-header">
+            <div class="info-brand">
+              <span class="brand-logo" aria-hidden="true">
+                <span class="brand-orbit"></span>
+                <svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none">
+                  <path d="M12 25L22 7L20 18H28L17 33L19.5 22H12V25Z" fill="url(#brandGradCard)" />
+                  <defs>
+                    <linearGradient id="brandGradCard" x1="12" y1="7" x2="28" y2="33" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#67e8f9" />
+                      <stop offset="0.55" stop-color="#2563eb" />
+                      <stop offset="1" stop-color="#7c3aed" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <div>
+                <span>HackPulse Editorial</span>
+                <strong>One hub to document, ship, pitch, and win</strong>
+              </div>
+            </div>
+            <div class="live-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
+              </svg>
+              Live sync
+            </div>
+          </div>
+
+          <div class="story-card-body">
+            <div class="story-orbit" aria-hidden="true">
+              <span class="orbit-path"></span>
+              <span class="orbit-chip chip-admin">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                Sprint
+              </span>
+              <span class="orbit-chip chip-store">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                Article
+              </span>
+              <span class="orbit-chip chip-pay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Demo
+              </span>
+              <span class="orbit-chip chip-ship">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+                Podium
+              </span>
+              <div class="story-core">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                </svg>
+                <strong>Hackathon OS</strong>
+                <small>Blog + playbooks + live teardowns</small>
+              </div>
+            </div>
+
+            <div class="story-feed">
+              <div class="feed-item feed-one">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+                <span>Team logs architecture pivot</span>
+              </div>
+              <div class="feed-item feed-two">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span>Postmortem goes live on feed</span>
+              </div>
+              <div class="feed-item feed-three">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <span>Readers clone verified blueprint</span>
+              </div>
+              <div class="feed-item feed-four">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>Next squad ships in 48 hours</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="capability-strip">
+            <div class="capability-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              <span>Field Notes</span>
+              <small>Real engineering diaries, bug logs, and pivot decisions.</small>
+            </div>
+            <div class="capability-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+              <span>Blueprints</span>
+              <small>Copyable AI, Web3, and SaaS schemas built for speed.</small>
+            </div>
+            <div class="capability-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+              <span>Pitch Studio</span>
+              <small>180-second demo choreography and rubric guides.</small>
+            </div>
+          </div>
+
+          <div class="info-card-footer">
+            <span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path></svg>
+              Open publication
+            </span>
+            <span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path></svg>
+              Verified winners
+            </span>
+            <span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+              Search &amp; RSS ready
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOGOS & METRICS SECTION -->
+      <section class="logos-section section-pad" data-reveal>
+        <p class="section-kicker">Stories featured from global hackathon arenas</p>
+        <div class="logo-strip">
+          <span>ETHGlobal</span>
+          <span>HackMIT</span>
+          <span>MLH Season</span>
+          <span>Devfolio Hub</span>
+          <span>AI Engineer</span>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <strong>180+</strong>
+            <span>Winning teardowns</span>
+          </div>
+          <div class="metric">
+            <strong>64K+</strong>
+            <span>Monthly builder readers</span>
+          </div>
+          <div class="metric">
+            <strong>99.4%</strong>
+            <span>Live demo uptime</span>
+          </div>
+          <div class="metric">
+            <strong>48 hr</strong>
+            <span>Sprint blueprints</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM VS SOLUTION COMPARISON -->
+      <section class="problem section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">The old way is fragmented</span>
+          <h2>Learning From Hackathons Shouldn't Be Scattered</h2>
+        </div>
+        <div class="comparison">
+          <div class="pain-panel" data-reveal>
+            <div class="pain-item"><span>x</span>Dead GitHub repos with zero setup notes</div>
+            <div class="pain-item"><span>x</span>Surface-level recaps missing architecture diagrams</div>
+            <div class="pain-item"><span>x</span>Lost 3-minute pitch decks and demo timings</div>
+            <div class="pain-item"><span>x</span>Hours wasted hunting working sponsor SDK snippets</div>
+            <div class="pain-item"><span>x</span>No follow-up path from prototype to real product</div>
+          </div>
+          <div class="solution-panel" data-reveal>
+            <div class="solution-orbit">
+              <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+              </svg>
+            </div>
+            <h3>One curated hackathon journal</h3>
+            <p>
+              Every winning build log, architecture map, sponsor SDK wrapper, 180-second pitch script, and deployment checklist lives in one fast, searchable developer publication.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES SECTION (#features) -->
+      <section id="features" class="features section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Complete publication stack</span>
+          <h2>Everything You Need In One Hackathon Blog</h2>
+        </div>
+        <div class="feature-grid" data-reveal>
+          <article class="feature-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <h3>Engineering Build Logs</h3>
+            <p>Follow candid hour-by-hour diaries from 24- and 48-hour sprints, covering scope cuts, bug recoveries, and crucial pivot moments.</p>
+          </article>
+
+          <article class="feature-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+              <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+              <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+              <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+            </svg>
+            <h3>System Architecture Maps</h3>
+            <p>Inspect real API pipelines, vector schemas, and serverless edge topologies used by Grand Prize AI and Web3 submissions.</p>
+          </article>
+
+          <article class="feature-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <h3>3-Minute Pitch Deconstructions</h3>
+            <p>Study proven demo choreography, slide pacing, and storytelling hooks built specifically for rapid hackathon judging tables.</p>
+          </article>
+
+          <article class="feature-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"></circle>
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+            </svg>
+            <h3>Sponsor Bounty Field Guides</h3>
+            <p>Get clean integration notes and working starters for Gemini, Supabase, Vercel, Stripe, and Polygon so you never miss track criteria.</p>
+          </article>
+
+          <article class="feature-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <h3>Copy-Ready Starter Snippets</h3>
+            <p>Pull battle-tested authentication routes, streaming UI wrappers, and mock fallbacks straight from any technical teardown.</p>
+          </article>
+
+          <article class="feature-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"></path>
+              <path d="m19 9-5 5-4-4-3 3"></path>
+            </svg>
+            <h3>Post-Hackathon Scale Stories</h3>
+            <p>Read founder retrospectives on turning weekend prototypes into open-source releases, Product Hunt launches, and seed-stage companies.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESS / HOW IT WORKS (#process) -->
+      <section id="process" class="process section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Simple by design</span>
+          <h2>From Weekend Sprint Log To Live Featured Playbook</h2>
+          <p>
+            HackPulse connects your builder notes, GitHub demo links, and architecture snapshots into one live editorial pipeline so every story stays actionable.
+          </p>
+        </div>
+
+        <!-- 3-COLUMN LIVE FLOW STAGE (Mirrors readytoscale.in .flow-stage) -->
+        <div class="flow-stage" data-reveal>
+          <div class="portal-card">
+            <div class="portal-top">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+              <span>Author Studio</span>
+            </div>
+            <div class="admin-form">
+              <span>Title: PulseGuard AI Code Reviewer</span>
+              <span>Track: Best Multimodal Agent</span>
+              <span>Stack: Next.js • Gemini • Supabase</span>
+              <button type="button" id="flow-publish-btn">Publish Story To Feed</button>
+            </div>
+          </div>
+
+          <div class="sync-lane" aria-hidden="true">
+            <div class="sync-line"></div>
+            <div class="data-chip chip-product">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              Build Log
+            </div>
+            <div class="data-chip chip-order">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path></svg>
+              Architecture
+            </div>
+            <div class="data-chip chip-status">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Live Demo
+            </div>
+          </div>
+
+          <div class="portal-card">
+            <div class="portal-top">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+              <span>Reader Publication</span>
+            </div>
+            <div class="phone-store">
+              <div class="mini-product">
+                <small>Featured Teardown</small>
+              </div>
+              <strong id="flow-preview-title">PulseGuard: 1st Place Build Log</strong>
+              <span>Code walkthrough + 3-min script</span>
+              <button type="button" id="flow-read-btn">Read Full Teardown</button>
+            </div>
+            <div class="live-toast" id="flow-live-toast">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              New field note synced to feed
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-STEP HORIZONTAL CARDS -->
+        <div class="steps workflow-steps" data-reveal>
+          <article class="step">
+            <span>01</span>
+            <h3>Scope the prompt</h3>
+            <p>Log your problem statement, judging rubric, and target sponsor track during Hour 0 before writing a single line.</p>
+          </article>
+          <article class="step">
+            <span>02</span>
+            <h3>Capture build pivots</h3>
+            <p>Record architecture decisions, API rate-limit fixes, and midnight scope cuts while they are fresh.</p>
+          </article>
+          <article class="step">
+            <span>03</span>
+            <h3>Embed live demos</h3>
+            <p>Pair your deployment link, GitHub repo, and 180-second walkthrough directly inside your editorial post.</p>
+          </article>
+          <article class="step">
+            <span>04</span>
+            <h3>Verify code snippets</h3>
+            <p>Format copyable TypeScript, SQL, and prompt workflows so future hackers can ship faster without guesswork.</p>
+          </article>
+          <article class="step">
+            <span>05</span>
+            <h3>Inspire next cohort</h3>
+            <p>Publish to the HackPulse library where thousands of builders bookmark, learn, and launch winning prototypes.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- VISUAL STORY & LIVE REEL SECTION -->
+      <section class="visual-story section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Premium reader experience</span>
+          <h2>Stories, Dashboards, And Sprint Logs That Feel Alive</h2>
+        </div>
+        <div class="visual-grid">
+          <figure class="generated-visual" data-reveal>
+            <img
+              src="./assets/showcase-dashboard.jpg"
+              alt="HackPulse dark-mode engineering blog layout and real-time sprint telemetry visual"
+              loading="lazy"
+            />
+          </figure>
+          <div class="demo-reel" data-reveal>
+            <div class="reel-header">
+              <span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Live sprint cycle
+              </span>
+              <strong>48:00</strong>
+            </div>
+            <div class="reel-scene">
+              <div class="reel-card add-card">Team logs build</div>
+              <div class="reel-card user-card">Teardown publishes</div>
+              <div class="reel-card order-card">Readers clone stack</div>
+              <div class="reel-card ship-card">Next winner ships</div>
+              <svg class="reel-spinner" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HACKATHON BLOG & FIELD NOTES SECTION (#blog) -->
+      <section id="blog" class="section-pad">
+        <div class="blog-header-row" data-reveal>
+          <div class="section-heading">
+            <span class="section-kicker">Curated field notes</span>
+            <h2>Latest Hackathon Stories &amp; Technical Teardowns</h2>
+            <p>
+              Deep dives from Grand Prize winners, AI engineers, and weekend founders—complete with real metrics, code patterns, and lessons learned.
+            </p>
+          </div>
+          <button class="button primary" type="button" id="open-composer-btn">
+            <span>+ Write Field Note</span>
+          </button>
+        </div>
+
+        <div class="blog-toolbar" data-reveal>
+          <div class="blog-filters" id="blog-filters" role="group" aria-label="Filter articles by category">
+            <button class="filter-pill active" type="button" data-category="All">All Stories</button>
+            <button class="filter-pill" type="button" data-category="AI Agents">AI Agents</button>
+            <button class="filter-pill" type="button" data-category="Pitch & Demo">Pitch &amp; Demo</button>
+            <button class="filter-pill" type="button" data-category="Web3 & Infra">Web3 &amp; Infra</button>
+            <button class="filter-pill" type="button" data-category="Team Ops">Team Ops</button>
+            <button class="filter-pill" type="button" data-category="Startup Scale">Startup Scale</button>
+            <button class="filter-pill" type="button" data-category="Saved">
+              Saved <span class="saved-badge" id="saved-count">0</span>
+            </button>
+          </div>
+          <div class="blog-search-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            <input type="search" id="blog-search" placeholder="Search stories, stacks, winners..." autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="blog-grid" id="blog-grid"></div>
+        <div class="blog-empty" id="blog-empty" hidden>
+          <h3>No matching hackathon stories</h3>
+          <p>Try a different keyword or reset the category filter to browse all field notes.</p>
+          <button class="button secondary small" type="button" id="reset-filters-btn">Show All Stories</button>
+        </div>
+      </section>
+
+      <!-- LIVE DEMO CARDS (#demo) -->
+      <section id="demo" class="live-demo section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Interactive sandbox</span>
+          <h2>Try The Reader Feed And Author Workflow</h2>
+          <p>
+            Open the live editorial reader to inspect winning technical breakdowns, or launch the Author Studio to publish your own hackathon build log straight into the grid.
+          </p>
+        </div>
+        <div class="demo-actions" data-reveal>
+          <button class="demo-card" type="button" data-open-demo>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <span>Reader Experience</span>
+            <strong>Browse teardowns &amp; interactive code blueprints</strong>
+            <small>Open workflow modal &rarr;</small>
+          </button>
+
+          <button class="demo-card admin-demo" type="button" id="demo-composer-trigger">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+            <span>Author Studio</span>
+            <strong>Draft a build log, tag your stack &amp; publish live</strong>
+            <div class="admin-login-info">
+              <span>Sandbox Mode</span>
+              <strong>Instant local publishing enabled</strong>
+              <strong>No account signup required</strong>
+            </div>
+            <small>Launch story composer &rarr;</small>
+          </button>
+        </div>
+      </section>
+
+      <!-- PRICING / MEMBERSHIP TIERS (#pricing) -->
+      <section id="pricing" class="pricing section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Built for builders</span>
+          <h2>Read Free Forever. Level Up Your Sprint Squad.</h2>
+        </div>
+        <div class="plans" data-reveal>
+          <article class="plan">
+            <div>
+              <h3>Community</h3>
+              <p>For solo hackers reading field notes and learning winning patterns</p>
+            </div>
+            <strong>Free</strong>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Unlimited blog &amp; teardowns
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Copyable starter snippets
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Local reading bookmarks
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Weekly digest newsletter
+            </span>
+            <a class="button plan-button" href="#blog">Start Reading</a>
+          </article>
+
+          <article class="plan highlighted">
+            <div>
+              <h3>Pro Builder</h3>
+              <p>For active competitors chasing Grand Prizes and sponsor tracks</p>
+            </div>
+            <strong>$9 / mo</strong>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Full Figma pitch deck templates
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Sponsor SDK boilerplate vault
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              180s demo script reviews
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Featured author profile badge
+            </span>
+            <a class="button primary plan-button" href="#contact">Choose Pro Builder</a>
+          </article>
+
+          <article class="plan">
+            <div>
+              <h3>Squad Pass</h3>
+              <p>For 4-person hackathon teams preparing for major global sprints</p>
+            </div>
+            <strong>$29 / event</strong>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Up to 4 builder seats
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Pre-sprint architecture check
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Guaranteed postmortem feature
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Live Discord mentor channel
+            </span>
+            <a class="button plan-button" href="#contact">Choose Squad Pass</a>
+          </article>
+
+          <article class="plan">
+            <div>
+              <h3>Event Partner</h3>
+              <p>For university clubs, developer ecosystems, and hackathon hosts</p>
+            </div>
+            <strong>Custom</strong>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Dedicated event story hub
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Custom sponsor SDK tutorials
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Winner spotlight series
+            </span>
+            <span class="checkline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Editorial &amp; SEO syndication
+            </span>
+            <a class="button plan-button" href="#contact">Contact Editorial</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ SECTION (#faq) -->
+      <section id="faq" class="faq section-pad">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Questions builders ask</span>
+          <h2>HackPulse, Explained Clearly</h2>
+        </div>
+        <div class="faq-grid" data-reveal>
+          <article class="faq-item">
+            <h3>What is HackPulse?</h3>
+            <p>HackPulse is an engineering-first hackathon blog and builder journal featuring winning project postmortems, architecture diagrams, pitch breakdowns, and copyable sprint templates.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Can anyone publish a hackathon story?</h3>
+            <p>Yes. Whether you placed 1st overall or learned a tough lesson at Hour 36, you can draft your build log right in the Author Studio or pitch our editorial team via the form below.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Are starter snippets allowed at MLH or ETHGlobal?</h3>
+            <p>Yes. Our boilerplate patterns and SDK helpers follow standard open-source MIT rules, helping you eliminate setup overhead while writing all core product logic during the event.</p>
+          </article>
+          <article class="faq-item">
+            <h3>How are winning teardowns verified?</h3>
+            <p>Every featured postmortem includes links to public demo tracks, latency benchmarks, and real architecture trade-offs reviewed by past hackathon judges and senior engineers.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Do I need an account to bookmark or read?</h3>
+            <p>No. Reading all field notes, copying code blocks, bookmarking stories locally, and testing the interactive Author Studio work immediately in your browser.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Can organizations host a hackathon series here?</h3>
+            <p>Yes. University chapters, developer tools companies, and global sponsors partner with HackPulse to publish bounty walkthroughs and official winner spotlights.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA & CONTACT SECTION (#contact) -->
+      <section id="contact" class="cta section-pad">
+        <div class="cta-inner" data-reveal>
+          <div>
+            <span class="section-kicker">Share your sprint</span>
+            <h2>Turn Your Next Weekend Build Into A Story Worth Reading</h2>
+            <p>Submit a winning postmortem, request sponsor SDK guides, or partner with HackPulse for your upcoming hackathon cohort.</p>
+          </div>
+          <button class="button primary" type="button" id="cta-compose-btn">
+            <span>Write A Field Note</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="contact-panel" data-reveal>
+          <div class="contact-info">
+            <div>
+              <span class="section-kicker">Editorial desk</span>
+              <p>Have a hackathon story to pitch, a winning repo to break down, or an upcoming event partnership? Send a note to our editors.</p>
+            </div>
+            <div class="contact-highlight">
+              <a class="contact-line phone-line" href="mailto:editorial@hackpulse.dev">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                <span>
+                  <small>Editorial Dispatch</small>
+                  <strong>editorial@hackpulse.dev</strong>
+                </span>
+              </a>
+              <div class="contact-line">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>
+                  <small>Builder Network</small>
+                  <strong>HackPulse Community Editorial</strong>
+                  <em>Bengaluru &bull; San Francisco &bull; London &bull; Remote Worldwide Hackathons</em>
+                </span>
+              </div>
+              <div class="gst-line">MIT Open Playbooks &bull; 2026 Season</div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form">
+            <label>
+              Your Name
+              <input name="name" id="contact-name" required placeholder="Aarav Mehta" />
+            </label>
+            <label>
+              Email or GitHub Handle
+              <input name="contactDetails" id="contact-handle" required placeholder="aarav@buildfast.dev or @aarav-dev" />
+            </label>
+            <label>
+              Story Pitch or Question
+              <textarea name="message" id="contact-message" required rows="5" placeholder="Tell us about your hackathon project, winning track, or article idea..."></textarea>
+            </label>
+            <button class="button primary" type="submit" id="contact-submit-btn">
+              <span>Send Story Pitch</span>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- FLOATING QUICK ACTION BUTTON -->
+      <button class="whatsapp-float" type="button" id="float-compose-btn" aria-label="Write a new hackathon field note">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"></path>
+          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+        </svg>
+      </button>
+
+      <!-- 3-COLUMN SITE FOOTER -->
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <a class="logo" href="#top" aria-label="HackPulse home">
+            <span class="brand-logo" aria-hidden="true">
+              <span class="brand-orbit"></span>
+              <svg class="brand-logo-svg" viewBox="0 0 40 40" fill="none">
+                <path d="M12 25L22 7L20 18H28L17 33L19.5 22H12V25Z" fill="url(#brandGradFoot)" />
+                <defs>
+                  <linearGradient id="brandGradFoot" x1="12" y1="7" x2="28" y2="33" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#67e8f9" />
+                    <stop offset="0.55" stop-color="#2563eb" />
+                    <stop offset="1" stop-color="#7c3aed" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span>HackPulse</span>
+          </a>
+          <p>An engineering-first hackathon blog and playbook hub for builders turning weekend ideas into shipped products.</p>
+          <a class="powered-by" href="#blog">
+            Curated by HackPulse Editorial
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <a href="#features">Platform Features</a>
+          <a href="#process">How It Works</a>
+          <a href="#blog">Field Notes Blog</a>
+          <a href="#pricing">Plans</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-links">
+          <h3>Connect</h3>
+          <a href="#demo" data-open-demo>Interactive Sandbox</a>
+          <a href="#contact">Submit A Story</a>
+          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub Blueprints</a>
+          <a href="mailto:editorial@hackpulse.dev">Email Editors</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- INTERACTIVE WORKFLOW DEMO MODAL (Mirrors readytoscale.in .demo-modal) -->
+    <div class="modal-backdrop" id="demo-modal" aria-hidden="true">
+      <div class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close demo modal">x</button>
+        <div class="modal-copy">
+          <span class="section-kicker">Live editorial workflow</span>
+          <h2 id="demo-modal-title">Read Winning Stories Or Publish Your Own</h2>
+          <p>
+            Jump straight into our featured technical breakdowns with copyable starter snippets, or open the Author Studio to draft and publish a new hackathon blog post right onto the page.
+          </p>
+        </div>
+        <div class="modal-flow" aria-hidden="true">
+          <div class="modal-node admin-node">Author logs build</div>
+          <div class="modal-sync">
+            <span></span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>
+          </div>
+          <div class="modal-node user-node">Live blog feed</div>
+          <div class="modal-status">Story synced &amp; readable</div>
+        </div>
+        <div class="modal-actions">
+          <button class="button primary" type="button" id="modal-read-featured">Read Featured Story</button>
+          <button class="button secondary" type="button" id="modal-open-composer">Write Field Note</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL ARTICLE READER MODAL -->
+    <div class="modal-backdrop" id="article-modal" aria-hidden="true">
+      <div class="article-modal-box" role="dialog" aria-modal="true" aria-labelledby="article-modal-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close article">x</button>
+        <div id="article-modal-content"></div>
+      </div>
+    </div>
+
+    <!-- LIVE BLOG POST COMPOSER MODAL -->
+    <div class="modal-backdrop" id="composer-modal" aria-hidden="true">
+      <div class="article-modal-box" role="dialog" aria-modal="true" aria-labelledby="composer-modal-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close story composer">x</button>
+        <span class="section-kicker">Author Studio</span>
+        <h2 id="composer-modal-title" style="margin-top: 8px; margin-bottom: 12px;">Publish A Hackathon Field Note</h2>
+        <p style="color: var(--muted); margin-bottom: 20px;">
+          Add your own hackathon teardown, architecture recap, or sprint takeaway. It saves locally and appears immediately in the Field Notes feed.
+        </p>
+        <form class="contact-form" id="composer-form">
+          <label>
+            Story Title
+            <input id="comp-title" required placeholder="e.g. How We Built a Voice Emergency Triage Bot in 36 Hours" />
+          </label>
+          <label>
+            Category
+            <select id="comp-category">
+              <option value="AI Agents">AI Agents</option>
+              <option value="Pitch & Demo">Pitch &amp; Demo</option>
+              <option value="Web3 & Infra">Web3 &amp; Infra</option>
+              <option value="Team Ops">Team Ops</option>
+              <option value="Startup Scale">Startup Scale</option>
+            </select>
+          </label>
+          <label>
+            Author Name &amp; Role
+            <input id="comp-author" required placeholder="Priya Nair • Systems Lead" />
+          </label>
+          <label>
+            Tech Stack Tags (comma separated)
+            <input id="comp-tags" placeholder="Next.js, Gemini 2.5, Supabase" />
+          </label>
+          <label>
+            Short Summary
+            <textarea id="comp-excerpt" required rows="2" placeholder="One or two crisp sentences summarizing your build and result..."></textarea>
+          </label>
+          <label>
+            Key Architecture &amp; Lessons
+            <textarea id="comp-body" required rows="4" placeholder="Share what worked, what broke during the sprint, and your demo tip..."></textarea>
+          </label>
+          <button class="button primary" type="submit">Publish Story Now</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
