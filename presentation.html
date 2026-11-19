@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HackPulse — 5-Slide Presentation Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #030712;
+        --surface: rgba(17, 24, 39, 0.85);
+        --card-bg: rgba(255, 255, 255, 0.055);
+        --line: rgba(255, 255, 255, 0.12);
+        --blue: #2563eb;
+        --violet: #7c3aed;
+        --cyan: #06b6d4;
+        --cyan-soft: #9debf4;
+        --cyan-bright: #8eefff;
+        --muted: #a6b0c3;
+        --text: #f9fafb;
+      }
+
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at 18% 12%, rgba(37,99,235,0.25), transparent 30rem),
+                    radial-gradient(circle at 82% 8%, rgba(6,182,212,0.16), transparent 26rem),
+                    var(--bg);
+        color: var(--text);
+      }
+
+      .deck-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* TOP BAR */
+      .top-bar {
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: rgba(3, 7, 18, 0.65);
+        backdrop-filter: blur(16px);
+      }
+      .brand-title {
+        display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem;
+      }
+      .badge-live {
+        padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 800;
+        background: rgba(6, 182, 212, 0.18); color: var(--cyan-bright); border: 1px solid rgba(6, 182, 212, 0.35);
+      }
+      .controls {
+        display: flex; align-items: center; gap: 12px;
+      }
+      .btn {
+        padding: 7px 14px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--line);
+        cursor: pointer; transition: all 0.2s ease;
+      }
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.14); border-color: var(--cyan);
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, var(--blue), var(--cyan)); border: 0;
+      }
+
+      /* SLIDE VIEWPORT */
+      .slides-viewport {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 48px 70px;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 80px 48px 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(24px) scale(0.98);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+      }
+
+      .slide-content-wrap {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+
+      .kicker {
+        font-size: 0.85rem; font-weight: 900; color: var(--cyan-soft);
+        text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+        display: inline-flex; align-items: center; gap: 8px;
+      }
+      h1 {
+        font-size: clamp(2.4rem, 4.5vw, 4rem);
+        line-height: 1.05; margin: 0 0 16px; font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+        line-height: 1.15; margin: 0 0 16px; font-weight: 800;
+      }
+      p.lead {
+        font-size: 1.2rem; color: var(--muted); line-height: 1.6; max-width: 820px; margin: 0 0 28px;
+      }
+
+      /* GRIDS & CARDS */
+      .grid-3 {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      }
+      .grid-2 {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
+      }
+      .card {
+        padding: 22px; border-radius: 8px; border: 1px solid var(--line);
+        background: var(--card-bg);
+      }
+      .card h3 {
+        margin: 0 0 8px; font-size: 1.15rem; color: #fff;
+      }
+      .card p {
+        margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.55;
+      }
+
+      .flow-diagram {
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding: 24px; border-radius: 8px; border: 1px solid rgba(6,182,212,0.35);
+        background: rgba(3, 7, 18, 0.7); margin-top: 16px;
+      }
+      .flow-step {
+        flex: 1; text-align: center; padding: 16px; border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line);
+      }
+      .flow-arrow {
+        color: var(--cyan-bright); font-size: 1.5rem; font-weight: 900;
+      }
+
+      .slide-img {
+        width: 100%; border-radius: 8px; border: 1px solid var(--line);
+        aspect-ratio: 16 / 9; object-fit: cover; box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      }
+
+      /* BOTTOM BAR */
+      .bottom-bar {
+        height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        border-top: 1px solid var(--line);
+        background: rgba(3, 7, 18, 0.8);
+        backdrop-filter: blur(16px);
+        z-index: 20;
+      }
+      .slide-counter {
+        font-weight: 700; font-size: 0.9rem; color: var(--muted);
+      }
+      .nav-arrows {
+        display: flex; gap: 8px;
+      }
+      .progress-bar-wrap {
+        position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .progress-bar-fill {
+        height: 100%; background: linear-gradient(90deg, var(--blue), var(--cyan));
+        width: 20%; transition: width 0.3s ease;
+      }
+
+      /* SPEAKER NOTES DRAWER */
+      .speaker-notes-drawer {
+        position: fixed; right: 24px; bottom: 74px; width: 440px; max-height: 380px;
+        overflow-y: auto; padding: 20px; border-radius: 8px;
+        border: 1px solid rgba(6,182,212,0.4);
+        background: rgba(3, 7, 18, 0.96); backdrop-filter: blur(24px);
+        box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+        display: none; z-index: 40;
+      }
+      .speaker-notes-drawer.open { display: block; }
+      .speaker-notes-drawer h4 {
+        margin: 0 0 10px; color: var(--cyan-soft); font-size: 0.9rem; text-transform: uppercase;
+      }
+      .speaker-notes-drawer p {
+        margin: 0 0 10px; color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;
+      }
+      .speaker-notes-drawer blockquote {
+        margin: 10px 0 0; padding: 10px 14px; border-left: 3px solid var(--cyan);
+        background: rgba(6,182,212,0.1); color: #e2e8f0; font-size: 0.88rem; font-style: italic;
+      }
+
+      @media (max-width: 900px) {
+        .grid-3, .grid-2 { grid-template-columns: 1fr; }
+        .slide { inset: 70px 20px 65px; overflow-y: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck-container">
+      <!-- TOP BAR -->
+      <header class="top-bar">
+        <div class="brand-title">
+          <span>⚡ HackPulse</span>
+          <span class="badge-live">Live Presentation</span>
+        </div>
+        <div class="controls">
+          <button class="btn" id="notes-toggle-btn" title="Toggle speaker notes (N key)">Notes (N)</button>
+          <button class="btn" id="fullscreen-btn" title="Toggle fullscreen (F key)">Fullscreen (F)</button>
+          <a class="btn primary" href="./index.html" target="_blank">Launch Site ↗</a>
+        </div>
+      </header>
+
+      <!-- SLIDES VIEWPORT -->
+      <main class="slides-viewport">
+        <!-- SLIDE 1 -->
+        <section class="slide active" data-slide="1">
+          <div class="slide-content-wrap">
+            <span class="kicker">Slide 01 • Executive Overview</span>
+            <h1>HackPulse: The Hackathon Engineering Journal</h1>
+            <p class="lead">
+              Transforming scattered 48-hour prototype code into structured, permanent developer playbooks, interactive architecture blueprints, and winning pitch breakdowns.
+            </p>
+            <div class="grid-3">
+              <div class="card">
+                <h3>The 48-Hour Problem</h3>
+                <p>85% of hackathon repositories die after demo day. Crucial architecture choices and hard-won pivot logs disappear.</p>
+              </div>
+              <div class="card">
+                <h3>ReadyToScale.in Inspiration</h3>
+                <p>Adapted the kinetic SaaS elegance and synchronized dual-portal architecture of readytoscale.in for developer journalism.</p>
+              </div>
+              <div class="card">
+                <h3>The Solution</h3>
+                <p>A unified hub featuring real build logs, copyable sponsor SDK patterns, live sprint telemetry, and interactive sandboxes.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2 -->
+        <section class="slide" data-slide="2">
+          <div class="slide-content-wrap">
+            <span class="kicker">Slide 02 • Visual Engineering</span>
+            <h2>Design Philosophy &amp; Aesthetic Translation</h2>
+            <p class="lead">
+              Strictly recreating the deep obsidian atmosphere, 8px geometry, and sweeping light kinetics of modern SaaS platforms.
+            </p>
+            <div class="grid-3">
+              <div class="card">
+                <h3 style="color:var(--cyan-soft);">Obsidian Void Canvas</h3>
+                <p>Base background at <code>#030712</code> with layered electric blue (<code>#2563eb</code>) and cyan (<code>#06b6d4</code>) radial mesh gradients.</p>
+              </div>
+              <div class="card">
+                <h3 style="color:var(--cyan-bright);">8px Glass Design System</h3>
+                <p>Unified 8px corner radii, frosted glass surfaces (<code>backdrop-filter: blur(22px)</code>), and crisp 1px translucent borders.</p>
+              </div>
+              <div class="card">
+                <h3 style="color:#dffbff;">Hero Orbit Centerpiece</h3>
+                <p>3D floating card featuring 4 rotating sprint chips, a continuous light sheen animation, and pulsing live telemetry stream.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 -->
+        <section class="slide" data-slide="3">
+          <div class="slide-content-wrap">
+            <span class="kicker">Slide 03 • Core Architecture</span>
+            <h2>The 3-Tier Interactive Flow Stage</h2>
+            <p class="lead">
+              Translating readytoscale.in's admin-to-storefront synchronization into a live developer author-to-reader editorial pipeline.
+            </p>
+            <div class="flow-diagram">
+              <div class="flow-step">
+                <strong style="color:var(--cyan-soft);">01. Author Studio</strong>
+                <p style="margin-top:6px; font-size:0.86rem; color:var(--muted);">
+                  Builders log project specs, track bounties, and author live postmortems.
+                </p>
+              </div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step" style="border-color:rgba(6,182,212,0.4);">
+                <strong style="color:#fff;">02. Kinetic Sync Rail</strong>
+                <p style="margin-top:6px; font-size:0.86rem; color:var(--muted);">
+                  Cascading light pulses &amp; floating chips serialize state to the client.
+                </p>
+              </div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step">
+                <strong style="color:var(--cyan-bright);">03. Reader Publication</strong>
+                <p style="margin-top:6px; font-size:0.86rem; color:var(--muted);">
+                  Instant live card preview with zero-reload interactive toasts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4 -->
+        <section class="slide" data-slide="4">
+          <div class="slide-content-wrap">
+            <span class="kicker">Slide 04 • Functional Systems</span>
+            <h2>Key Platform Features &amp; Capabilities</h2>
+            <p class="lead">
+              An active application blending static speed with rich client-side interactivity and persistence.
+            </p>
+            <div class="grid-3">
+              <div class="card">
+                <h3>6 Curated Field Notes</h3>
+                <p>Deep technical breakdowns on AI multi-agent reviewers, 180s pitch tactics, edge cloud backends, and sponsor bounties.</p>
+              </div>
+              <div class="card">
+                <h3>Live Search &amp; Filtering</h3>
+                <p>Multi-field keyword search across tags and authors, instant category switching, and persistent local bookmarks.</p>
+              </div>
+              <div class="card">
+                <h3>Article Modal &amp; Code Studio</h3>
+                <p>Full-screen glass reader with 1-click clipboard code copy and client-side Author Studio story composer.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5 -->
+        <section class="slide" data-slide="5">
+          <div class="slide-content-wrap">
+            <span class="kicker">Slide 05 • Production &amp; Impact</span>
+            <h2>Tech Stack, CI/CD Pipeline &amp; Deployment</h2>
+            <p class="lead">
+              Zero-dependency architecture with automated GitHub Actions continuous deployment.
+            </p>
+            <div class="grid-2">
+              <div class="card">
+                <h3>Architecture Highlights</h3>
+                <p style="margin-bottom:12px;"><strong>Frontend:</strong> Semantic HTML5 • Custom CSS3 Design System • Vanilla ES6+ JS.</p>
+                <p style="margin-bottom:12px;"><strong>Performance:</strong> Zero framework bundle overhead; sub-200ms initial paint; 100% offline static compatibility.</p>
+                <p><strong>CI/CD:</strong> GitHub Actions (<code>deploy.yml</code>) running <code>actions/deploy-pages@v4</code> with HTTPS enforced.</p>
+              </div>
+              <div class="card" style="border-color:rgba(6,182,212,0.4); background:rgba(6,182,212,0.06);">
+                <h3 style="color:var(--cyan-bright);">Live Production Links</h3>
+                <p style="margin-bottom:8px;"><strong>GitHub Repository:</strong><br /><code>github.com/MAHADHEV-AI/hackathon-blog-website-2</code></p>
+                <p><strong>Live Website:</strong><br /><code>mahadhev-ai.github.io/hackathon-blog-website-2/</code></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- SPEAKER NOTES DRAWER -->
+      <aside class="speaker-notes-drawer" id="speaker-notes">
+        <h4 id="notes-title">Speaker Script</h4>
+        <div id="notes-body"></div>
+      </aside>
+
+      <!-- BOTTOM BAR -->
+      <footer class="bottom-bar">
+        <div class="slide-counter" id="slide-counter">Slide 1 of 5</div>
+        <div class="nav-arrows">
+          <button class="btn" id="prev-btn">← Prev</button>
+          <button class="btn" id="next-btn">Next →</button>
+        </div>
+      </footer>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <script>
+      const NOTES = [
+        `"Good morning/afternoon everyone. Today, I'm excited to present HackPulse. During a 48-hour hackathon, an immense amount of high-velocity engineering happens under intense time constraints. But right after judging, 85% of these repos go completely dark. Inspired by the clean, kinetic design patterns of readytoscale.in, we built HackPulse—a dedicated platform where builders can document their sprints, inspect verified system architectures, and clone battle-tested code snippets in minutes."`,
+        `"One of our primary engineering goals was visual parity with the premium dark-mode feel of readytoscale.in. We extracted and adapted its core visual DNA: a deep obsidian base at #030712, dual radial gradients in electric blue and cyan, and a strict 8px card radius. Notice our right-side hero centerpiece: it features rotating milestone chips, a sweeping light sheen, and a live telemetry feed that makes the entire page feel active and responsive."`,
+        `"Slide 3 illustrates our core technical innovation: the dual-portal workflow. In readytoscale.in, the admin panel synchronizes product updates directly to a customer storefront. We translated this into a developer editorial workflow. In our Author Studio, a hacker logs their 48-hour sprint. When they click publish, our kinetic sync rail simulates data propagation, and the Reader Publication updates with zero reload."`,
+        `"On Slide 4, we examine the platform's core functional modules. Beyond static reading, HackPulse is an active application. Users can filter by category, perform instant multi-keyword searches, and bookmark articles to browser storage. When opening any field note, a full-screen glass modal displays architectural diagrams and copyable TypeScript code blocks with 1-click clipboard integration."`,
+        `"To conclude, HackPulse was engineered for extreme velocity and reliability. By utilizing modern semantic HTML5, a custom CSS3 design system, and modular vanilla JavaScript, we achieved near-instant load times with zero framework bloat. The entire repository is version-controlled at MAHADHEV-AI/hackathon-blog-website-2 and deployed live via automated GitHub Actions on GitHub Pages. Thank you!"`
+      ];
+
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const counter = document.getElementById('slide-counter');
+      const progressBar = document.getElementById('progress-bar');
+      const notesDrawer = document.getElementById('speaker-notes');
+      const notesBody = document.getElementById('notes-body');
+      const notesTitle = document.getElementById('notes-title');
+
+      function updateSlide(idx) {
+        currentSlide = Math.max(0, Math.min(idx, slides.length - 1));
+        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+        counter.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+        progressBar.style.width = `${((currentSlide + 1) / slides.length) * 100}%`;
+        notesTitle.textContent = `Speaker Script • Slide ${currentSlide + 1}`;
+        notesBody.innerHTML = `<p>${NOTES[currentSlide]}</p>`;
+      }
+
+      document.getElementById('prev-btn').addEventListener('click', () => updateSlide(currentSlide - 1));
+      document.getElementById('next-btn').addEventListener('click', () => updateSlide(currentSlide + 1));
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') { updateSlide(currentSlide + 1); }
+        else if (e.key === 'ArrowLeft') { updateSlide(currentSlide - 1); }
+        else if (e.key.toLowerCase() === 'n') { notesDrawer.classList.toggle('open'); }
+        else if (e.key.toLowerCase() === 'f') {
+          if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); }
+          else { document.exitFullscreen(); }
+        }
+      });
+
+      document.getElementById('notes-toggle-btn').addEventListener('click', () => {
+        notesDrawer.classList.toggle('open');
+      });
+
+      document.getElementById('fullscreen-btn').addEventListener('click', () => {
+        if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); }
+        else { document.exitFullscreen(); }
+      });
+
+      updateSlide(0);
+    </script>
+  </body>
+</html>
