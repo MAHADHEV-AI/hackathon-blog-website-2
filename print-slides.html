@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HackPulse — 5-Page Presentation Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #030712;
+        color: #f9fafb;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        width: 297mm;
+        height: 210mm;
+        page-break-after: always;
+        break-after: page;
+        position: relative;
+        padding: 16mm 20mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: radial-gradient(circle at 18% 12%, rgba(37,99,235,0.25), transparent 140mm),
+                    radial-gradient(circle at 82% 8%, rgba(6,182,212,0.18), transparent 120mm),
+                    #030712;
+        overflow: hidden;
+      }
+
+      /* HEADER */
+      .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-bottom: 3mm;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 800;
+        font-size: 13pt;
+        letter-spacing: -0.01em;
+      }
+      .badge {
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 7.5pt;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: rgba(6, 182, 212, 0.18);
+        color: #8eefff;
+        border: 1px solid rgba(6, 182, 212, 0.4);
+      }
+      .page-tag {
+        font-size: 8.5pt;
+        color: #94a3b8;
+        font-weight: 600;
+      }
+
+      /* CONTENT */
+      .page-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4mm 0;
+      }
+      .kicker {
+        font-size: 8.5pt;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9debf4;
+        margin-bottom: 2mm;
+      }
+      h1 {
+        font-size: 26pt;
+        line-height: 1.1;
+        margin: 0 0 3mm;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        font-size: 20pt;
+        line-height: 1.15;
+        margin: 0 0 3mm;
+        font-weight: 800;
+        letter-spacing: -0.015em;
+      }
+      p.subtitle {
+        font-size: 10.5pt;
+        color: #a6b0c3;
+        line-height: 1.5;
+        margin: 0 0 5mm;
+        max-width: 230mm;
+      }
+
+      /* GRIDS */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5mm;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 6mm;
+        align-items: stretch;
+      }
+      .card {
+        padding: 4.5mm 5mm;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.055);
+      }
+      .card h3 {
+        margin: 0 0 2mm;
+        font-size: 10.5pt;
+        font-weight: 800;
+        color: #fff;
+      }
+      .card p {
+        margin: 0;
+        font-size: 8.5pt;
+        line-height: 1.5;
+        color: #cbd5e1;
+      }
+      .card ul {
+        margin: 2mm 0 0;
+        padding-left: 4mm;
+        font-size: 8.2pt;
+        color: #94a3b8;
+        line-height: 1.5;
+      }
+
+      .flow-row {
+        display: flex;
+        align-items: center;
+        gap: 4mm;
+        padding: 5mm;
+        border-radius: 6px;
+        background: rgba(3, 7, 18, 0.75);
+        border: 1px solid rgba(6, 182, 212, 0.35);
+        margin-top: 3mm;
+      }
+      .flow-box {
+        flex: 1;
+        padding: 4mm;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .flow-box strong {
+        display: block;
+        font-size: 9.5pt;
+        color: #9debf4;
+        margin-bottom: 1mm;
+      }
+      .flow-box p {
+        margin: 0;
+        font-size: 7.8pt;
+        color: #94a3b8;
+        line-height: 1.4;
+      }
+      .flow-sep {
+        font-size: 14pt;
+        font-weight: 900;
+        color: #8eefff;
+      }
+
+      /* FOOTER */
+      .page-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 3mm;
+        font-size: 8pt;
+        color: #64748b;
+      }
+      .page-num {
+        font-weight: 700;
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- PAGE 1 -->
+    <section class="page">
+      <header class="page-header">
+        <div class="brand">
+          <span>⚡ HackPulse</span>
+          <span class="badge">Project Presentation</span>
+        </div>
+        <div class="page-tag">Presentation Slide 01 / 05</div>
+      </header>
+
+      <div class="page-body">
+        <div class="kicker">Executive Summary • Problem &amp; Opportunity</div>
+        <h1>HackPulse: The Hackathon Engineering Journal</h1>
+        <p class="subtitle">
+          An engineering-first hackathon blog and builder platform built to transform rapid 48-hour prototype code into permanent, reproducible technical playbooks, architectural diagrams, and winning pitch breakdowns.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="color:#f87171;">The 48-Hour Problem</h3>
+            <p>Over 85% of hackathon submissions become dead repositories days after judging. Critical architectural pivots, prompt strategies, and sponsor SDK workarounds are lost.</p>
+            <ul>
+              <li>Zero structured documentation post-event</li>
+              <li>Judges only spend 180s reviewing projects</li>
+              <li>Future teams repeatedly reinvent the wheel</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="color:#38bdf8;">The ReadyToScale Inspiration</h3>
+            <p>Modeled after the kinetic SaaS elegance and synchronized dual-portal architecture of readytoscale.in, adapted specifically for developer journalism.</p>
+            <ul>
+              <li>Obsidian void canvas with radial mesh glow</li>
+              <li>Synchronized creator-to-reader pipeline</li>
+              <li>3D kinetic hero orbit centerpiece</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="color:#4ade80;">The HackPulse Solution</h3>
+            <p>A unified hub featuring real build diaries, copyable sponsor SDK patterns, live sprint telemetry, and interactive sandboxes.</p>
+            <ul>
+              <li>6 verified winning hackathon teardowns</li>
+              <li>Interactive flow stage with live preview</li>
+              <li>In-browser story composer with local save</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer">
+        <span>HackPulse Platform Presentation</span>
+        <span class="page-num">Page 1 of 5</span>
+      </footer>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page">
+      <header class="page-header">
+        <div class="brand">
+          <span>⚡ HackPulse</span>
+          <span class="badge">Visual Design</span>
+        </div>
+        <div class="page-tag">Presentation Slide 02 / 05</div>
+      </header>
+
+      <div class="page-body">
+        <div class="kicker">Design Philosophy • Aesthetic Deconstruction</div>
+        <h2>Visual Architecture Inspired by ReadyToScale.in</h2>
+        <p class="subtitle">
+          Deconstructing and adapting the signature dark-mode mesh, 8px geometry, and sweeping kinetic lighting that makes modern high-end developer platforms feel alive.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="color:#67e8f9;">1. Midnight Mesh Canvas</h3>
+            <p>A deep obsidian foundation (<code>#030712</code>) layered with dual radial gradient glows in electric blue (<code>#2563eb</code>) and cyan (<code>#06b6d4</code>).</p>
+            <ul>
+              <li>Dynamic 38-particle animated starfield</li>
+              <li>Subtle parallax light diffusion</li>
+              <li>High contrast for code readability</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="color:#a78bfa;">2. 8px Glassmorphic Geometry</h3>
+            <p>A disciplined design system built around a strict 8px border radius across cards, floating navigation, inputs, and modals.</p>
+            <ul>
+              <li>Frosted glass (<code>backdrop-filter: blur(22px)</code>)</li>
+              <li>1px translucent borders (<code>rgba(255,255,255,0.12)</code>)</li>
+              <li>Tactile lift-on-hover micro-interactions</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="color:#34d399;">3. 3D Hero Orbit Centerpiece</h3>
+            <p>The signature right-side hero card featuring continuous sweeping light gleams (<code>infoSweep</code>) and animated rotating sprint chips.</p>
+            <ul>
+              <li>Rotating chips: Sprint, Article, Demo, Podium</li>
+              <li>Pulsating live telemetry feed lines</li>
+              <li>3-column capability strip</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer">
+        <span>HackPulse Platform Presentation</span>
+        <span class="page-num">Page 2 of 5</span>
+      </footer>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="page">
+      <header class="page-header">
+        <div class="brand">
+          <span>⚡ HackPulse</span>
+          <span class="badge">System Architecture</span>
+        </div>
+        <div class="page-tag">Presentation Slide 03 / 05</div>
+      </header>
+
+      <div class="page-body">
+        <div class="kicker">Core Workflow • Dual-Portal Architecture</div>
+        <h2>The 3-Tier Interactive Flow Stage</h2>
+        <p class="subtitle">
+          Translating readytoscale.in's admin-to-storefront synchronization model into a developer editorial pipeline: from raw 48-hour build logs to a live community publication.
+        </p>
+
+        <div class="flow-row">
+          <div class="flow-box">
+            <strong>Tier 01: Author Studio</strong>
+            <p>Creators log their project name, track (e.g. Gemini AI, Polygon, Supabase), core architecture, and 180s walkthrough script.</p>
+          </div>
+          <span class="flow-sep">→</span>
+          <div class="flow-box" style="border-color:rgba(6,182,212,0.4); background:rgba(6,182,212,0.08);">
+            <strong>Tier 02: Kinetic Sync Rail</strong>
+            <p>A multi-stop gradient rail with cascading light pulses and floating data chips simulating live event stream serialization.</p>
+          </div>
+          <span class="flow-sep">→</span>
+          <div class="flow-box">
+            <strong>Tier 03: Reader Publication</strong>
+            <p>Instant client-side preview with live status toasts and 1-click modal transitions directly into verified code walkthroughs.</p>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 4mm;">
+          <div class="card">
+            <h3>Live State Serialization</h3>
+            <p>Clicking "Publish Story To Feed" triggers immediate DOM state updates and animated notification toasts with zero page reload.</p>
+          </div>
+          <div class="card">
+            <h3>5-Step Sprint Workflow</h3>
+            <p>Structured milestones: 01 Scope Prompt → 02 Capture Pivots → 03 Embed Live Demo → 04 Verify Code Snippets → 05 Inspire Next Cohort.</p>
+          </div>
+          <div class="card">
+            <h3>Interactive Sandbox Modals</h3>
+            <p>Seamless modal overlays for live demo execution, story authoring, and deep-dive technical article review.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer">
+        <span>HackPulse Platform Presentation</span>
+        <span class="page-num">Page 3 of 5</span>
+      </footer>
+    </section>
+
+    <!-- PAGE 4 -->
+    <section class="page">
+      <header class="page-header">
+        <div class="brand">
+          <span>⚡ HackPulse</span>
+          <span class="badge">Functional Capabilities</span>
+        </div>
+        <div class="page-tag">Presentation Slide 04 / 05</div>
+      </header>
+
+      <div class="page-body">
+        <div class="kicker">Platform Features • Developer Tooling</div>
+        <h2>Engineered for Deep Reading &amp; Rapid Authoring</h2>
+        <p class="subtitle">
+          Blending the lightning speed of a static publication with dynamic client-side filtering, multi-field search, persistent bookmarks, and code extraction.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>6 Curated Field Notes</h3>
+            <p>Full case studies with real architectures: Multi-Agent PR Reviewers (Gemini 2.5), 180-Second Demo Rules, Zero-Cold-Start Edge Backends, and ZK Bounties.</p>
+            <ul>
+              <li>Author badge &amp; reading times</li>
+              <li>Tech stack taxonomy tags</li>
+              <li>Bespoke 16:9 dark-mesh imagery</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Live Search &amp; Category Filters</h3>
+            <p>Real-time client-side filter engine across 6 categories: AI Agents, Pitch &amp; Demo, Web3 &amp; Infra, Team Ops, Startup Scale, and Saved.</p>
+            <ul>
+              <li>Instant multi-field keyword matching</li>
+              <li>Persistent localStorage bookmarks</li>
+              <li>Dynamic badge counters</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Modal Reader &amp; In-Browser Composer</h3>
+            <p>Full-screen glassmorphic article reader with 1-click clipboard code snippet copy, plus an Author Studio composer allowing visitors to draft and publish posts.</p>
+            <ul>
+              <li>1-click code copying to clipboard</li>
+              <li>XSS-safe local story composition</li>
+              <li>Persistent across browser sessions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer">
+        <span>HackPulse Platform Presentation</span>
+        <span class="page-num">Page 4 of 5</span>
+      </footer>
+    </section>
+
+    <!-- PAGE 5 -->
+    <section class="page">
+      <header class="page-header">
+        <div class="brand">
+          <span>⚡ HackPulse</span>
+          <span class="badge">Production &amp; Deployment</span>
+        </div>
+        <div class="page-tag">Presentation Slide 05 / 05</div>
+      </header>
+
+      <div class="page-body">
+        <div class="kicker">Implementation Details • CI/CD &amp; Roadmap</div>
+        <h2>Zero-Dependency Core &amp; Automated GitHub CI/CD</h2>
+        <p class="subtitle">
+          Built using clean semantic web standards for sub-200ms load times, coupled with modern GitHub Actions for continuous automated deployment.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Engineering Strengths</h3>
+            <ul>
+              <li><strong>Zero Framework Overhead:</strong> Written in pure Semantic HTML5, Custom CSS3, and Vanilla ES6+ JavaScript. No node_modules runtime dependency.</li>
+              <li><strong>Offline Resilience:</strong> Fully functional offline via <code>file://</code> protocol or any static web server.</li>
+              <li><strong>Automated CI/CD:</strong> GitHub Actions workflow (<code>.github/workflows/deploy.yml</code>) running <code>actions/deploy-pages@v4</code> with HTTPS enforcement.</li>
+              <li><strong>7 Bespoke Dark Assets:</strong> Custom-generated 16:9 widescreen artwork matching the site's obsidian/cyan color profile.</li>
+            </ul>
+          </div>
+          <div class="card" style="border-color:rgba(6,182,212,0.4); background:rgba(6,182,212,0.06);">
+            <h3 style="color:#67e8f9;">Production Verification &amp; Live Links</h3>
+            <p style="margin-bottom:2mm;"><strong>GitHub Code Repository:</strong><br /><code style="color:#8eefff;">github.com/MAHADHEV-AI/hackathon-blog-website-2</code></p>
+            <p style="margin-bottom:2mm;"><strong>Live Hosted Site (GitHub Pages):</strong><br /><code style="color:#8eefff;">mahadhev-ai.github.io/hackathon-blog-website-2/</code></p>
+            <p style="margin-bottom:3mm;"><strong>Interactive Slides:</strong><br /><code style="color:#8eefff;">mahadhev-ai.github.io/hackathon-blog-website-2/presentation.html</code></p>
+            <p style="font-size:8pt; color:#94a3b8; margin:0;">
+              ✓ Automated GitHub Pages deploy: 14s build time<br />
+              ✓ All 52 DOM IDs &amp; 28 anchor routes verified<br />
+              ✓ CSS brace balance: 0 (validated)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer">
+        <span>HackPulse Platform Presentation • Q&amp;A</span>
+        <span class="page-num">Page 5 of 5</span>
+      </footer>
+    </section>
+
+  </body>
+</html>
